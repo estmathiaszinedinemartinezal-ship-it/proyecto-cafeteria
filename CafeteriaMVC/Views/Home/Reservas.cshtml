@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Reservas";
+}
+
+<h1>Reserva tu Mesa</h1>
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alerta">@ViewBag.Mensaje</div>
+}
+
+<form method="post" asp-action="Reservas">
+    <div class="fila-form">
+        <input type="text" name="NombreCliente" placeholder="Tu nombre completo" required />
+        <input type="email" name="Correo" placeholder="Tu correo electrónico" required />
+    </div>
+    <div class="fila-form">
+        <input type="date" name="Fecha" required />
+        <input type="time" name="Hora" required />
+    </div>
+    <input type="number" name="Personas" placeholder="Cantidad de personas (1 a 15)" min="1" max="15" required />
+    <button type="submit">Confirmar Reserva</button>
+</form>

@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Cafetería Aroma</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <a asp-controller="Home" asp-action="Index" class="logo">☕ Cafetería Aroma</a>
+        <nav>
+            <a asp-controller="Home" asp-action="Index">Inicio</a>
+            <a asp-controller="Home" asp-action="Menu">Menú</a>
+            <a asp-controller="Home" asp-action="Reservas">Reservas</a>
+            <a asp-controller="Home" asp-action="Contacto">Contacto</a>
+            <a asp-controller="Home" asp-action="Estadisticas">Estadísticas</a>
+            <a asp-controller="Home" asp-action="Admin" class="btn-admin">Panel Admin</a>
+        </nav>
+    </header>
+
+    <main class="contenedor">
+        @RenderBody()
+    </main>
+</body>
+</html>

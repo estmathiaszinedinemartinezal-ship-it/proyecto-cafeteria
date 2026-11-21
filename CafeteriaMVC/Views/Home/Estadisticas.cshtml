@@ -1,0 +1,63 @@
+@model CafeteriaMVC.Models.EstadisticasViewModel
+@{
+    ViewData["Title"] = "Estadísticas SQL";
+}
+
+<h1>📊 Reporte Estadístico (Raw SQL)</h1>
+<p>Indicadores calculados con consultas SQL planas en MySQL (COUNT, AVG, MAX, MIN, SUM, GROUP BY).</p>
+
+<div class="grid-menu">
+    <div class="card-producto">
+        <span class="categoria-badge">1. COUNT()</span>
+        <h3>Registros Totales</h3>
+        <p>
+            Productos en carta: <strong>@Model.TotalProductos</strong><br />
+            Reservas activas: <strong>@Model.TotalReservas</strong><br />
+            Mensajes recibidos: <strong>@Model.TotalMensajes</strong>
+        </p>
+    </div>
+
+    <div class="card-producto">
+        <span class="categoria-badge">2. AVG()</span>
+        <h3>Promedios Generales</h3>
+        <p>Precio promedio del menú:<br /><strong>Bs. @Model.PrecioPromedio.ToString("0.00")</strong></p>
+        <p>Promedio por reserva:<br /><strong>@Model.PromedioPersonas.ToString("0.0") personas</strong></p>
+    </div>
+
+    <div class="card-producto">
+        <span class="categoria-badge">3. MAX() y MIN()</span>
+        <h3>Rango de Precios</h3>
+        <p>
+            Producto más caro: <strong>Bs. @Model.PrecioMaximo.ToString("0.00")</strong><br />
+            Producto más económico: <strong>Bs. @Model.PrecioMinimo.ToString("0.00")</strong>
+        </p>
+    </div>
+
+    <div class="card-producto">
+        <span class="categoria-badge">4. SUM()</span>
+        <h3>Aforo Reservado</h3>
+        <p>Total de comensales esperados:</p>
+        <div class="precio">@Model.TotalComensales personas</div>
+    </div>
+</div>
+
+<h2 style="margin-top: 30px;">5. Estadísticas por Categoría (GROUP BY)</h2>
+<table>
+    <tr>
+        <th>Categoría</th>
+        <th>Cantidad (COUNT)</th>
+        <th>Precio Promedio (AVG)</th>
+        <th>Más Caro (MAX)</th>
+        <th>Más Barato (MIN)</th>
+    </tr>
+    @foreach (var cat in Model.PorCategoria)
+    {
+        <tr>
+            <td><strong>@cat.Categoria</strong></td>
+            <td>@cat.Cantidad productos</td>
+            <td>Bs. @cat.Promedio.ToString("0.00")</td>
+            <td>Bs. @cat.Maximo.ToString("0.00")</td>
+            <td>Bs. @cat.Minimo.ToString("0.00")</td>
+        </tr>
+    }
+</table>

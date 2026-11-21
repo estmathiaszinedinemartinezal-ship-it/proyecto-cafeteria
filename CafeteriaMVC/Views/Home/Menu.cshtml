@@ -1,0 +1,19 @@
+@model List<CafeteriaMVC.Models.Producto>
+@{
+    ViewData["Title"] = "Menú";
+}
+
+<h1>Nuestra Carta</h1>
+<div class="grid-menu">
+    @foreach (var p in Model)
+    {
+        <div class="card-producto">
+            <div>
+                <span class="categoria-badge">@p.Categoria</span>
+                <h3>@p.Nombre</h3>
+                <p>@p.Descripcion</p>
+            </div>
+            <div class="precio">Bs. @p.Precio.ToString("0.00")</div>
+        </div>
+    }
+</div>
